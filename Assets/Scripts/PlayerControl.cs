@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float player_horizontal_speed = 4f;
     [SerializeField] private float player_vertical_speed = 4f;
+
+    [Header("Weapon Points")]
+    [SerializeField] private Transform w_point_up;
+    [SerializeField] private Transform w_point_down;
+    [SerializeField] private Transform w_point_side;
+    [SerializeField] private Transform weapon_point;
+    [SerializeField] private Transform sword_point;
+    [SerializeField] private Transform arba_point;
+    [SerializeField] private SpriteRenderer weapon;
+    [SerializeField] private SpriteRenderer sword;
+    [SerializeField] private SpriteRenderer arba;
 
     private bool mode_up;
     private bool mode_down;
@@ -40,31 +52,55 @@ public class PlayerControl : MonoBehaviour
     private void CheckInput()
     {
         x_speed = Input.GetAxis("Horizontal");
-        y_speed = Input.GetAxis("Vertical");
+        y_speed = Input.GetAxis("Vertical");        
     }
 
     private void CheckRotation()
     {
-        if (Input.GetAxis("Vertical") != 0)
-        {
-            if (Input.GetAxis("Vertical") > 0)
-            {
-                player_rotation = "up";
-            }
-            if (Input.GetAxis("Vertical") < 0)
-            {
-                player_rotation = "down";
-            }
-        }
-        else
+        if (Input.GetAxis("Horizontal") != 0)
         {
             if (Input.GetAxis("Horizontal") > 0)
             {
                 player_rotation = "right";
+                weapon_point.position = w_point_side.position;
+                weapon.sortingOrder = 11;
+                sword_point.position = w_point_side.position;
+                sword.sortingOrder = 11;
+                arba_point.position = w_point_side.position;
+                arba.sortingOrder = 11;
             }
             if (Input.GetAxis("Horizontal") < 0)
             {
                 player_rotation = "left";
+                weapon_point.position = w_point_side.position;
+                weapon.sortingOrder = 9;
+                sword_point.position = w_point_side.position;
+                sword.sortingOrder = 9;
+                arba_point.position = w_point_side.position;
+                arba.sortingOrder = 9;
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                player_rotation = "up";
+                weapon_point.position = w_point_up.position;
+                weapon.sortingOrder = 9;
+                sword_point.position = w_point_up.position;
+                sword.sortingOrder = 9;
+                arba_point.position = w_point_up.position;
+                arba.sortingOrder = 9;
+            }
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                player_rotation = "down";
+                weapon_point.position = w_point_down.position;
+                weapon.sortingOrder = 11;
+                sword_point.position = w_point_down.position;
+                sword.sortingOrder = 11;
+                arba_point.position = w_point_down.position;
+                arba.sortingOrder = 11;
             }
         }
     }
