@@ -19,6 +19,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private SpriteRenderer sword;
     [SerializeField] private SpriteRenderer arba;
 
+    public int x = 1;
+
     private bool mode_up;
     private bool mode_down;
     private bool mode_left;
@@ -153,6 +155,6 @@ public class PlayerControl : MonoBehaviour
 
     private void Movement()
     {
-        rb.velocity = new Vector2(player_horizontal_speed * x_speed, player_vertical_speed * y_speed);
+        rb.velocity = new Vector2(player_horizontal_speed * x_speed * x, player_vertical_speed * y_speed* x);
     }
 }

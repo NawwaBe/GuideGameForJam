@@ -18,6 +18,8 @@ public class EnemyControl : MonoBehaviour
     public EnemyTrigger enemy_trigger;
     public PlayerLife player_life;
 
+
+    public int x = 1;
     public bool player_insight = false;
 
     private bool attack = false;
@@ -123,7 +125,7 @@ public class EnemyControl : MonoBehaviour
 
     private void Movement(Vector2 direction)
     {
-        rb.MovePosition((Vector2)transform.position + (direction * enemy_speed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.position + (direction * enemy_speed * x * Time.deltaTime));
     }
 
     private void EnemyAttack()

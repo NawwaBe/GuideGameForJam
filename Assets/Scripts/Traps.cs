@@ -17,48 +17,24 @@ public class Traps : MonoBehaviour
 
     void Update()
     {
-        CheckAnim();
-    }
-
-    private void CheckAnim()
-    {
-        anim.SetBool("active", true);
-    }
-
-    private void Lava()
-    {
-        player_anim.SetTrigger("onDamage");
-        player_life.Damage(3);
-    }
-
-    private void Shipi()
-    {
-        player_anim.SetTrigger("onDamage");
-        player_life.Damage(1);
-    }
-
-    private void Fire()
-    {
-        player_anim.SetTrigger("onDamage");
-        player_life.Damage(3);
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (gameObject.tag == "Lava")
-            {
-                Lava();
-            }
-            if (gameObject.tag == "Shipi")
-            {
-                Shipi();
-            }
-            if (gameObject.tag == "Fire")
-            {
-                Fire();
-            }
+            player_anim.SetTrigger("onDamage");
+            player_anim.SetBool("ononDamage", true);
+            player_life.Damage(3);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player_anim.SetBool("ononDamage", false);
         }
     }
 }
